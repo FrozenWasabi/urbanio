@@ -1,33 +1,25 @@
 class Vehicle {
-  float vX;
-  float vY;
-  color vColor;
+  ///Fields///
+////////////////////////////////
+  float xPos;
+  float yPos;
+  color Color;
   
-  float vSpeed;
-  float vAcceleration;
-  float vDeceleration;
+  float speed;
+  float acceleration;
+  float deceleration;
   float minSpeed;
   float maxSpeed;
   
   float vWidth;
   float vHeight;
   
-  float vRoadPos;
-  boolean vCollision;
-  
-  Vehicle( float x, float y, color c, float speed, float a, float d, float min, float max, float w, float h, float pos) {
-    this.vX = x;
-    this.vY = y;
-    this.vColor = c;
-    this.vSpeed = speed;
-    this.vAcceleration = a;
-    this.vDeceleration = d;
-    this.minSpeed = min;
-    this.maxSpeed = max;
-    this.vWidth = w;
-    this.vHeight = h;
-    this.vRoadPos = pos;
-    this.vCollision = false;
+  float roadPos;
+  boolean collision;
+ 
+  ///Methods///
+/////////////////
+  void move(){
+    
   }
-  
 }
