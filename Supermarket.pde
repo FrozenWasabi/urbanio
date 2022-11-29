@@ -1,0 +1,2 @@
+class Supermarket extends Infrastructure {
+}

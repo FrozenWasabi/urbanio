@@ -1,0 +1,2 @@
+class CommunityCentre extends Infrastructure {
+}
