@@ -13,6 +13,7 @@ class Vehicle {
 
   float roadPos;
   boolean collision;
+  boolean isTurning;
  
   ///Methods///
 /////////////////
@@ -21,11 +22,21 @@ class Vehicle {
   }
   
   void accelerate() {
-    
+    if (speed < maxSpeed) {
+      speed += acceleration;
+      if (speed > maxSpeed) {
+        speed = maxSpeed;
+      }
+    }
   }
   
   void decelerate() {
-    
+    if (speed > maxSpeed) {
+      speed -= deceleration;
+      if (speed < minSpeed) {
+        speed = minSpeed;
+      }
+    }
   }
   
   void turn() {
