@@ -10,10 +10,7 @@ class Vehicle {
   float deceleration;
   float minSpeed;
   float maxSpeed;
-  
-  float vWidth;
-  float vHeight;
-  
+
   float roadPos;
   boolean collision;
  
@@ -22,4 +19,10 @@ class Vehicle {
   void move(){
     
   }
+  
+  void drawVehicle(){
+    fill(Color);
+    circle(xPos,yPos,10);
+  }
+  
 }
