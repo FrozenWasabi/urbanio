@@ -1,2 +1,0 @@
-class Officer extends Infrastructure {
-}
