@@ -16,7 +16,19 @@ class Vehicle {
  
   ///Methods///
 /////////////////
-  void move(){
+  void moveVehicle(){
+    
+  }
+  
+  void accelerate() {
+    
+  }
+  
+  void decelerate() {
+    
+  }
+  
+  void turn() {
     
   }
   
