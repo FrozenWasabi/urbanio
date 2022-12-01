@@ -1,3 +1,7 @@
 class Infrastructure {
-  float speedLimit;
+  
+  
+  PImage imgSchool;
+  
+  void setup()
 }
