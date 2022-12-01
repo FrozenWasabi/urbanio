@@ -19,9 +19,9 @@ class Vehicle {
   float turningFactor;
   String sideOfRoad;
   boolean collision;
-  boolean isTurning;
-  boolean turningLeft;
-  boolean turningRight;
+  boolean isTurning = false;
+  boolean turningLeft = true;
+  boolean turningRight = false;
  
   ///Methods///
 /////////////////
@@ -52,15 +52,25 @@ class Vehicle {
   }
   
   void turn() {
-      if (turningRight = true) {
-        turningFactor -= 0.1;
+      if (turningRight == true) {
+        turningFactor -= 0.01;
       }
-      else if (turningLeft = true) {
-        turningFactor += 0.1;
+      else if (turningLeft == true) {
+        turningFactor += 0.01;
       }
-      if (turningFactor + roadPos == 90 || turningFactor + roadPos == 180 || turningFactor + roadPos == 270 || turningFactor + roadPos == 360 || turningFactor + roadPos == 0) {
+      if (turningFactor + roadPos == (round(radians(90)*100)/100) ||
+      turningFactor + roadPos == (round(radians(90)*100)/100) ||
+      turningFactor + roadPos == (round(radians(90)*100)/100) ||
+      turningFactor + roadPos == (round(radians(90)*100)/100) ||
+      turningFactor + roadPos == (round(radians(90)*100)/100)) {
+        
+          if (roadPos == 360) {
+            roadPos = 0;
+          }
+          
         roadPos += turningFactor;
         turningFactor = 0;
+        isTurning = false;
       }
   }
   
@@ -68,7 +78,8 @@ class Vehicle {
     fill(Color);
     pushMatrix();
     translate(xPos,yPos);
-    rotate(roadPos+turningFactor);
+    rotate((round((roadPos+turningFactor)*100))/100);
+    println((round((roadPos+turningFactor)*100))/100);
     rect(-(vWidth/2),-(vHeight/2),vWidth,vHeight);
     popMatrix();
   }
