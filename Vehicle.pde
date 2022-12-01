@@ -3,6 +3,10 @@ class Vehicle {
 ////////////////////////////////
   float xPos;
   float yPos;
+  float vWidth;
+  float vHeight;
+  float objM;
+  
   color Color;
   
   float speed;
@@ -11,14 +15,21 @@ class Vehicle {
   float minSpeed;
   float maxSpeed;
 
-  float roadPos;
+  float roadPos; //position of the car rotation 0 is East, 90 is North, 180 is West, 270 is South
+  String sideOfRoad;
   boolean collision;
   boolean isTurning;
+  boolean turningLeft;
+  boolean turningRight;
  
   ///Methods///
 /////////////////
   void moveVehicle(){
-    
+    //if not near intersection, move forwards
+    if (speed > 0) {
+      xPos += speed;
+    }
+    //if it intersection, turn
   }
   
   void accelerate() {
@@ -40,12 +51,21 @@ class Vehicle {
   }
   
   void turn() {
-    
+      if (turningRight = true) {
+        roadPos -= 0.1;
+      }
+      else if (turningLeft = true) {
+        roadPos += 0.1;
+      }
   }
   
   void drawVehicle(){
     fill(Color);
-    circle(xPos,yPos,10);
+    pushMatrix();
+    translate(xPos,yPos);
+    rotate(roadPos);
+    rect(-(vWidth/2),-(vHeight/2),vWidth,vHeight);
+    popMatrix();
   }
   
 }
