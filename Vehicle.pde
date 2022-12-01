@@ -58,13 +58,17 @@ class Vehicle {
       else if (turningLeft = true) {
         turningFactor += 0.1;
       }
+      if (turningFactor + roadPos == 90 || turningFactor + roadPos == 180 || turningFactor + roadPos == 270 || turningFactor + roadPos == 360 || turningFactor + roadPos == 0) {
+        roadPos += turningFactor;
+        turningFactor = 0;
+      }
   }
   
   void drawVehicle(){
     fill(Color);
     pushMatrix();
     translate(xPos,yPos);
-    rotate(roadPos);
+    rotate(roadPos+turningFactor);
     rect(-(vWidth/2),-(vHeight/2),vWidth,vHeight);
     popMatrix();
   }

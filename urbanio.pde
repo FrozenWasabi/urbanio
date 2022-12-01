@@ -36,6 +36,7 @@ void draw() {
 void updateCars() {
   for (int i = 0; i < allCars.size(); i++) {
     allCars.get(i).moveVehicle();
+    allCars.get(i).turn();
     allCars.get(i).carLeave();
   }
 }  
