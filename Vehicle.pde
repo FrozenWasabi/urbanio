@@ -16,6 +16,7 @@ class Vehicle {
   float maxSpeed;
 
   float roadPos; //position of the car rotation 0 is East, 90 is North, 180 is West, 270 is South
+  float turningFactor;
   String sideOfRoad;
   boolean collision;
   boolean isTurning;
@@ -52,10 +53,10 @@ class Vehicle {
   
   void turn() {
       if (turningRight = true) {
-        roadPos -= 0.1;
+        turningFactor -= 0.1;
       }
       else if (turningLeft = true) {
-        roadPos += 0.1;
+        turningFactor += 0.1;
       }
   }
   
