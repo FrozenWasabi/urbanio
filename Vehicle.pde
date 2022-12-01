@@ -1,18 +1,51 @@
 class Vehicle {
-  float vX;
-  float vY;
-  color vColor;
+  ///Fields///
+////////////////////////////////
+  float xPos;
+  float yPos;
+  color Color;
   
-  float vSpeed;
-  float vAcceleration;
-  float vDeceleration;
+  float speed;
+  float acceleration;
+  float deceleration;
   float minSpeed;
   float maxSpeed;
+
+  float roadPos;
+  boolean collision;
+  boolean isTurning;
+ 
+  ///Methods///
+/////////////////
+  void moveVehicle(){
+    
+  }
   
-  float vWidth;
-  float vHeight;
+  void accelerate() {
+    if (speed < maxSpeed) {
+      speed += acceleration;
+      if (speed > maxSpeed) {
+        speed = maxSpeed;
+      }
+    }
+  }
   
-  float vRoadPos;
+  void decelerate() {
+    if (speed > maxSpeed) {
+      speed -= deceleration;
+      if (speed < minSpeed) {
+        speed = minSpeed;
+      }
+    }
+  }
   
+  void turn() {
+    
+  }
+  
+  void drawVehicle(){
+    fill(Color);
+    circle(xPos,yPos,10);
+  }
   
 }
