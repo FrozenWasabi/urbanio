@@ -20,8 +20,8 @@ class Vehicle {
   String sideOfRoad;
   boolean collision;
   boolean isTurning = false;
-  boolean turningLeft = true;
-  boolean turningRight = false;
+  boolean turningLeft = false;
+  boolean turningRight = true;
  
   ///Methods///
 /////////////////
@@ -37,7 +37,7 @@ class Vehicle {
       else if (roadPos == PI) {
         xPos -= speed;
       }
-      else if (roadPos == 3*PI/2) {
+      else if (roadPos == (3*PI)/2) {
         yPos += speed;
       }
     }
@@ -65,9 +65,33 @@ class Vehicle {
   void turn() {
       if (turningRight == true) {
         angle -= (PI/90);
+        if (roadPos == 0) {
+          yPos -= 2;
+        }
+        else if (roadPos == PI/2) {
+          xPos += 2;
+        }
+        else if (roadPos == PI) {
+          yPos -= 2;
+        }
+        else if (roadPos == 3*PI/2) {
+          xPos -= 2;
+        }
       }
       else if (turningLeft == true) {
         angle += (PI/90);
+        if (roadPos == 0) {
+          yPos += 2;
+        }
+        else if (roadPos == PI/2) {
+          xPos -= 2;
+        }
+        else if (roadPos == PI) {
+          yPos += 2;
+        }
+        else if (roadPos == 3*PI/2) {
+          xPos += 2;
+        }
       }
       if (angle >= PI/2 || angle <= -PI/2) {     
         if (turningRight == true) {
@@ -76,11 +100,18 @@ class Vehicle {
         else if (turningLeft == true) {
           angle = (PI/2);
         }
+        
         roadPos += angle;
+        
+        if (roadPos == -(PI/2)) {
+          roadPos = 3*PI/2;
+        }
+        
         angle = 0;
         isTurning = false;
         turningLeft = false;
         turningRight = false;
+        
       }
   }
   
@@ -89,7 +120,7 @@ class Vehicle {
     pushMatrix();
     translate(xPos,yPos);
     rotate(roadPos+angle);
-    println(angle);
+    println(roadPos);
     rectMode(CENTER);
     rect(0,0,vWidth,vHeight);
     popMatrix();
