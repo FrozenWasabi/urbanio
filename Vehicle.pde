@@ -122,7 +122,7 @@ class Vehicle {
     rotate(roadPos+angle);
     println(roadPos);
     rectMode(CENTER);
-    rect(0,0,vWidth,vHeight);
+    rect(0,0,vWidth,vHeight,20);
     popMatrix();
   }
   
