@@ -28,7 +28,18 @@ class Vehicle {
   void moveVehicle(){
     //if not near intersection, move forwards
     if (speed > 0) {
-      xPos += speed;
+      if (roadPos == 0) {
+        xPos += speed;
+      }
+      else if (roadPos == PI/2) {
+        yPos -= speed;
+      }
+      else if (roadPos == PI) {
+        xPos -= speed;
+      }
+      else if (roadPos == 3*PI/2) {
+        yPos += speed;
+      }
     }
     //if it intersection, turn
   }
@@ -53,10 +64,10 @@ class Vehicle {
   
   void turn() {
       if (turningRight == true) {
-        angle -= (PI/180);
+        angle -= (PI/90);
       }
       else if (turningLeft == true) {
-        angle += (PI/180);
+        angle += (PI/90);
       }
       if (angle >= PI/2 || angle <= -PI/2) {     
         if (turningRight == true) {
@@ -68,6 +79,8 @@ class Vehicle {
         roadPos += angle;
         angle = 0;
         isTurning = false;
+        turningLeft = false;
+        turningRight = false;
       }
   }
   
