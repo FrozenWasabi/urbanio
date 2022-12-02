@@ -20,8 +20,8 @@ class Vehicle {
   String sideOfRoad;
   boolean collision;
   boolean isTurning = false;
-  boolean turningLeft = false;
-  boolean turningRight = true;
+  boolean turningLeft = true;
+  boolean turningRight = false;
  
   ///Methods///
 /////////////////
@@ -66,7 +66,7 @@ class Vehicle {
       if (turningRight == true) {
         angle -= (PI/90);
         if (roadPos == 0) {
-          yPos -= 2;
+          yPos += 2;
         }
         else if (roadPos == PI/2) {
           xPos += 2;
@@ -81,7 +81,7 @@ class Vehicle {
       else if (turningLeft == true) {
         angle += (PI/90);
         if (roadPos == 0) {
-          yPos += 2;
+          yPos -= 2;
         }
         else if (roadPos == PI/2) {
           xPos -= 2;
