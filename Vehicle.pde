@@ -16,7 +16,7 @@ class Vehicle {
   float maxSpeed;
 
   float roadPos; //position of the car rotation 0 is East, 90 is North, 180 is West, 270 is South
-  float turningFactor;
+  float angle;
   String sideOfRoad;
   boolean collision;
   boolean isTurning = false;
@@ -53,23 +53,20 @@ class Vehicle {
   
   void turn() {
       if (turningRight == true) {
-        turningFactor -= 0.01;
+        angle -= (PI/180);
       }
       else if (turningLeft == true) {
-        turningFactor += 0.01;
+        angle += (PI/180);
       }
-      if (turningFactor + roadPos == (round(radians(90)*100)/100) ||
-      turningFactor + roadPos == (round(radians(90)*100)/100) ||
-      turningFactor + roadPos == (round(radians(90)*100)/100) ||
-      turningFactor + roadPos == (round(radians(90)*100)/100) ||
-      turningFactor + roadPos == (round(radians(90)*100)/100)) {
-        
-          if (roadPos == 360) {
-            roadPos = 0;
-          }
-          
-        roadPos += turningFactor;
-        turningFactor = 0;
+      if (angle >= PI/2 || angle <= -PI/2) {     
+        if (turningRight == true) {
+          angle = -(PI/2);
+        }
+        else if (turningLeft == true) {
+          angle = (PI/2);
+        }
+        roadPos += angle;
+        angle = 0;
         isTurning = false;
       }
   }
@@ -78,9 +75,10 @@ class Vehicle {
     fill(Color);
     pushMatrix();
     translate(xPos,yPos);
-    rotate((round((roadPos+turningFactor)*100))/100);
-    println((round((roadPos+turningFactor)*100))/100);
-    rect(-(vWidth/2),-(vHeight/2),vWidth,vHeight);
+    rotate(roadPos+angle);
+    println(angle);
+    rectMode(CENTER);
+    rect(0,0,vWidth,vHeight);
     popMatrix();
   }
   
