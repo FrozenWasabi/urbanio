@@ -20,7 +20,7 @@ class Vehicle {
   String sideOfRoad;
   boolean collision;
   boolean isTurning = false;
-  boolean turningLeft = true;
+  boolean turningLeft = false;
   boolean turningRight = false;
  
   ///Methods///
@@ -37,7 +37,7 @@ class Vehicle {
       else if (roadPos == PI) {
         xPos -= speed;
       }
-      else if (roadPos == (3*PI)/2) {
+      else if (roadPos == 3*PI/2) {
         yPos += speed;
       }
     }
@@ -63,35 +63,36 @@ class Vehicle {
   }
   
   void turn() {
-      if (turningRight == true) {
+      if (turningLeft == true) {
         angle -= (PI/90);
         if (roadPos == 0) {
-          yPos += 2;
-        }
-        else if (roadPos == PI/2) {
-          xPos += 2;
-        }
-        else if (roadPos == PI) {
           yPos -= 2;
         }
-        else if (roadPos == 3*PI/2) {
+        else if (roadPos == PI/2) {
           xPos -= 2;
+        }
+        else if (roadPos == PI) {
+          yPos += 2;
+        }
+        else if (roadPos == 3*PI/2) {
+          xPos += 2;
         }
       }
-      else if (turningLeft == true) {
+      else if (turningRight == true) {
         angle += (PI/90);
         if (roadPos == 0) {
-          yPos -= 2;
-        }
-        else if (roadPos == PI/2) {
-          xPos -= 2;
-        }
-        else if (roadPos == PI) {
           yPos += 2;
         }
-        else if (roadPos == 3*PI/2) {
+        else if (roadPos == PI/2) {
           xPos += 2;
         }
+        else if (roadPos == PI) {
+          yPos -= 2;
+        }
+        else if (roadPos == 3*PI/2) {
+          xPos -= 2;
+        }
+        
       }
       if (angle >= PI/2 || angle <= -PI/2) {     
         if (turningRight == true) {
@@ -103,8 +104,14 @@ class Vehicle {
         
         roadPos += angle;
         
-        if (roadPos == -(PI/2)) {
+        if (roadPos == -(PI/2)) { //in case it becomes negative, we can set it back to positive
           roadPos = 3*PI/2;
+        }
+        else if (roadPos > PI/2 && roadPos <3*PI/2) { //corrects the rounding issues with processing
+          roadPos = PI;
+        }
+        else if (roadPos == 2*PI) { //in case it does a full rotation and becomes 2PI, we can set it back to 0;
+          roadPos = 0;
         }
         
         angle = 0;
