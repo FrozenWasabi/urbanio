@@ -39,4 +39,14 @@ class Road {
     strokeWeight(5);
     arc(this.x, this.y, 77, 81, 0, HALF_PI);
   }
+  
+  float getCenterLocationX() {
+    float middleX = this.x + this.rw/2;
+    return middleX;
+  }
+  
+  float getCenterLocationY() {
+    float middleY = this.y + this.rh/2;
+    return middleY;
+  }
 }

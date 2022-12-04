@@ -12,12 +12,10 @@ color red = color(255, 0, 0);
 
 
 void setup() {
-  frameRate(30);
+  frameRate(15);
   size(1000, 700);
   createGUI();
-  allCars.add(new Car(300, 100, 100, 20, red, 5, 10, 10, 10, 10, 0));
-  allCars.add(new Car(300, 300, 100, 20, red, 5, 10, 10, 10, 10, 0));
-  allCars.add(new Car(300, 500, 100, 20, red, 5, 10, 10, 10, 10, 0));
+  allCars.add(new Car(300, 120, 100, 20, red, 5, 10, 10, 10, 10, 0));
 
   setupRoads();
 }
@@ -43,12 +41,14 @@ void setupRoads() {
   allRoads.add(new Road(1000, 80, 60, 500, 100));
   allRoads.add(new Road(80, 550, 60, 920, 350));
   allRoads.add(new Road(80, 650, 60, 500, 450));
+  ///////////////Intersections coordinations
   allRoads.add(new Road(80, 80, 60, 500, 600));
   allRoads.add(new Road(80, 80, 60, 500, 100));
   allRoads.add(new Road(80, 80, 60, 120, 600));
   allRoads.add(new Road(80, 80, 60, 120, 100));
   allRoads.add(new Road(80, 80, 60, 920, 100));
   allRoads.add(new Road(80, 80, 60, 920, 600));
+  
   allRoads.add(new Road(80, 80, 60, 881, 559));
 }
 
@@ -80,11 +80,13 @@ void clearCars() {
 }
 
 void drawMap() {
+  ////////////////////////// Roads
   allRoads.get(0).DrawRoad();
   allRoads.get(1).DrawRoad();
   allRoads.get(2).DrawRoad();
   allRoads.get(3).DrawRoad();
   allRoads.get(4).DrawRoad();
+  ////////////////////////// Intersections
   allRoads.get(5).DrawIntersection();
   allRoads.get(6).DrawIntersection();
   allRoads.get(7).DrawIntersection();

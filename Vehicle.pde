@@ -17,6 +17,7 @@ class Vehicle {
 
   float roadPos; //position of the car rotation 0 is East, 90 is North, 180 is West, 270 is South
   float angle;
+  float turningCooldown;
   String sideOfRoad;
   boolean collision;
   boolean isTurning = false;
@@ -28,17 +29,28 @@ class Vehicle {
   void moveVehicle() {
     //if not near intersection, move forwards
     if (speed > 0) {
+      if ( turningCooldown > 0) {
+        turningCooldown -=1;
+      }
       if (roadPos == 0) {
-        xPos += speed;
+        this.xPos += speed;
       } else if (roadPos == PI/2) {
-        yPos -= speed;
+        this.yPos -= speed;
       } else if (roadPos == PI) {
-        xPos -= speed;
+        this.xPos -= speed;
       } else if (roadPos == 3*PI/2) {
-        yPos += speed;
+        this.yPos += speed;
       }
     }
-    //if it intersection, turn
+    //if it intersection and not already turning, turn
+    if (isTurning == false && turningCooldown == 0) {
+      for ( int i = 0; i < 5; i++) {
+        if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 80) {
+          isTurning = true;
+          turningRight = true;
+        }
+      }
+    }
   }
 
   void accelerate() {
@@ -61,26 +73,26 @@ class Vehicle {
 
   void turn() {
     if (turningLeft == true) {
-      angle -= (PI/90);
+      angle -= (PI/45);
       if (roadPos == 0) {
-        yPos -= 2;
+        this.yPos -= 1;
       } else if (roadPos == PI/2) {
-        xPos -= 2;
+        this.xPos -= 1;
       } else if (roadPos == PI) {
-        yPos += 2;
+        this.yPos += 1;
       } else if (roadPos == 3*PI/2) {
-        xPos += 2;
+        this.xPos += 1;
       }
     } else if (turningRight == true) {
-      angle += (PI/90);
+      angle += (PI/45);
       if (roadPos == 0) {
-        yPos += 2;
+        this.yPos += 1;
       } else if (roadPos == PI/2) {
-        xPos += 2;
+        this.xPos += 1;
       } else if (roadPos == PI) {
-        yPos -= 2;
+        this.yPos -= 1;
       } else if (roadPos == 3*PI/2) {
-        xPos -= 2;
+        this.xPos -= 1;
       }
     }
     if (angle >= PI/2 || angle <= -PI/2) {     
@@ -102,20 +114,32 @@ class Vehicle {
 
       angle = 0;
       isTurning = false;
+      turningCooldown = 30;
       turningLeft = false;
       turningRight = false;
     }
   }
 
   void drawVehicle() {
+    println(turningCooldown);
     noStroke();
     fill(Color);
     pushMatrix();
-    translate(xPos, yPos);
+    translate(this.xPos, this.yPos);
     rotate(roadPos+angle);
-    println(roadPos);
     rectMode(CENTER);
     rect(0, 0, vWidth, vHeight, 20);
     popMatrix();
   }
+  
+  float getCenterLocationX() {
+    float middleX = this.xPos + this.vWidth/2;
+    return middleX;
+  }
+  
+  float getCenterLocationY() {
+    float middleY = this.yPos + this.vHeight/2;
+    return middleY;
+  }
+  
 }
