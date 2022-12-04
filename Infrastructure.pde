@@ -1,7 +1,7 @@
-class Infrastructure {
-  
-  
-  PImage imgSchool;
-  
-  void setup()
-}
+//class Infrastructure {
+
+
+//  PImage imgSchool;
+
+//  void setup()
+//}
