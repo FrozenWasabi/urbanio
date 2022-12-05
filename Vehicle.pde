@@ -73,7 +73,7 @@ class Vehicle {
 
   void turn() {
     if (turningLeft == true) {
-      angle -= (PI/45);
+      angle -= (PI/36);
       if (roadPos == 0) {
         this.yPos -= 1;
       } else if (roadPos == PI/2) {
@@ -84,7 +84,7 @@ class Vehicle {
         this.xPos += 1;
       }
     } else if (turningRight == true) {
-      angle += (PI/45);
+      angle += (PI/36);
       if (roadPos == 0) {
         this.yPos += 1;
       } else if (roadPos == PI/2) {

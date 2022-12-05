@@ -15,7 +15,7 @@ void setup() {
   frameRate(15);
   size(1000, 700);
   createGUI();
-  allCars.add(new Car(300, 120, 100, 20, red, 5, 10, 10, 10, 10, 0));
+  allCars.add(new Car(300, 120, 50, 20, red, 5, 10, 10, 10, 10, 0));
 
   setupRoads();
 }
