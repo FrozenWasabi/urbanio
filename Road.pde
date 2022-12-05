@@ -41,12 +41,12 @@ class Road {
   }
   
   float getCenterLocationX() {
-    float middleX = this.x + this.rw/2;
+    float middleX = this.x;
     return middleX;
   }
   
   float getCenterLocationY() {
-    float middleY = this.y + this.rh/2;
+    float middleY = this.y;
     return middleY;
   }
 }

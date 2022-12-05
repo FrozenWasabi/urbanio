@@ -45,7 +45,7 @@ class Vehicle {
     //if it intersection and not already turning, turn
     if (isTurning == false && turningCooldown == 0) {
       for ( int i = 0; i < 5; i++) {
-        if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 110) {
+        if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 70) {
           isTurning = true;
           turningRight = true;
         }
