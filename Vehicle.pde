@@ -45,7 +45,7 @@ class Vehicle {
     //if it intersection and not already turning, turn
     if (isTurning == false && turningCooldown == 0) {
       for ( int i = 0; i < 5; i++) {
-        if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 80) {
+        if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 110) {
           isTurning = true;
           turningRight = true;
         }
@@ -73,7 +73,7 @@ class Vehicle {
 
   void turn() {
     if (turningLeft == true) {
-      angle -= (PI/36);
+      angle -= (PI/20);
       if (roadPos == 0) {
         this.yPos -= 1;
       } else if (roadPos == PI/2) {
@@ -84,7 +84,7 @@ class Vehicle {
         this.xPos += 1;
       }
     } else if (turningRight == true) {
-      angle += (PI/36);
+      angle += (PI/20);
       if (roadPos == 0) {
         this.yPos += 1;
       } else if (roadPos == PI/2) {
@@ -133,12 +133,12 @@ class Vehicle {
   }
   
   float getCenterLocationX() {
-    float middleX = this.xPos + this.vWidth/2;
+    float middleX = this.xPos;
     return middleX;
   }
   
   float getCenterLocationY() {
-    float middleY = this.yPos + this.vHeight/2;
+    float middleY = this.yPos;
     return middleY;
   }
   
