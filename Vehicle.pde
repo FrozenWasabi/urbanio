@@ -17,6 +17,7 @@ class Vehicle {
 
   float roadPos; //position of the car rotation 0 is East, 90 is North, 180 is West, 270 is South
   float angle;
+  float rotationStrength;
   float turningCooldown;
   String sideOfRoad;
   boolean collision;
@@ -42,12 +43,17 @@ class Vehicle {
         this.yPos += speed;
       }
     }
-    //if it intersection and not already turning, turn
+    //if it intersection and not already turning and it wants to turn, turn
     if (isTurning == false && turningCooldown == 0) {
-      for ( int i = 0; i < 5; i++) {
+      for ( int i = 0; i <= 6; i++) {
         if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 70) {
           isTurning = true;
-          turningRight = true;
+          if (trueOrFalse() == true) {
+            turningRight = true;
+          }
+          else {
+            turningLeft = true;
+          }
         }
       }
     }
@@ -73,7 +79,7 @@ class Vehicle {
 
   void turn() {
     if (turningLeft == true) {
-      angle -= (PI/20);
+      angle -= (rotationStrength);
       if (roadPos == 0) {
         this.yPos -= 1;
       } else if (roadPos == PI/2) {
@@ -84,7 +90,7 @@ class Vehicle {
         this.xPos += 1;
       }
     } else if (turningRight == true) {
-      angle += (PI/20);
+      angle += (rotationStrength);
       if (roadPos == 0) {
         this.yPos += 1;
       } else if (roadPos == PI/2) {
@@ -114,7 +120,7 @@ class Vehicle {
 
       angle = 0;
       isTurning = false;
-      turningCooldown = 30;
+      turningCooldown = 20;
       turningLeft = false;
       turningRight = false;
     }
@@ -142,4 +148,13 @@ class Vehicle {
     return middleY;
   }
   
+  //boolean wantsToTurn() {
+  //  int turnChance = int(random(1,100));
+  //  if (turnChance >= 50) {
+  //    return true;
+  //  }
+  //  else
+  //    this.turningCooldown = 50;
+  //    return false; 
+  //}
 }

@@ -7,6 +7,7 @@ ArrayList<Road> allRoads = new ArrayList<Road>(); //arraylist for all roads
 
 //color//
 color red = color(255, 0, 0);
+color background = color(40, 200, 80);
 
 //GUI Variables//
 
@@ -21,7 +22,7 @@ void setup() {
 }
 
 void draw() {
-  background(40, 200, 80);
+  background(background);
   drawMap();
   updateCars();
   drawCars();
@@ -94,4 +95,13 @@ void drawMap() {
   allRoads.get(9).DrawIntersection();
   allRoads.get(10).DrawIntersection();
   allRoads.get(11).DrawCurveLine();
+}
+
+boolean trueOrFalse() {
+  if (int(random(1,100)) >= 50) {
+    return true;
+  }
+    else {
+      return false;
+    }
 }
