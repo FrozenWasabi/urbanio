@@ -12,6 +12,7 @@ class Bus extends Vehicle {
     maxSpeed = max;
     roadPos = pos;
     collision = false;
+    rotationStrength = PI/18;
   }
   
   void busLeave() {

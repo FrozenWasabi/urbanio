@@ -8,4 +8,7 @@ void keyPressed() {
   if (key == 'd') {
     allCars.add(new Car(300, 120, 60, 20, red, 5, 10, 10, 10, 10, 0));
   }
+  if (key == 'f') {
+    allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
+  }
 }

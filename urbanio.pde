@@ -2,11 +2,12 @@ import g4p_controls.*;
 //Global Variables//
 
 ArrayList<Car> allCars = new ArrayList<Car>(); //arraylist for all cars on the road
-ArrayList<Bus> allBus = new ArrayList<Bus>(); //arraylist for all buses
+ArrayList<Bus> allBuses = new ArrayList<Bus>(); //arraylist for all buses
 ArrayList<Road> allRoads = new ArrayList<Road>(); //arraylist for all roads
 
 //color//
 color red = color(255, 0, 0);
+color blue = color(0,0,255);
 color background = color(40, 200, 80);
 
 //GUI Variables//
@@ -17,6 +18,7 @@ void setup() {
   size(1000, 700);
   createGUI();
   allCars.add(new Car(300, 120, 60, 20, red, 5, 10, 10, 10, 10, 0));
+  allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
 
   setupRoads();
 }
@@ -29,8 +31,8 @@ void draw() {
 
   //clearCars();
 
-  //  updateBuses();
-  //drawBuses();
+  updateBuses();
+  drawBuses();
 
   //  updatePeople();
   //  drawPeople();
@@ -71,6 +73,20 @@ void drawCars() {
     allCars.get(i).drawVehicle();
   }
 }
+
+void updateBuses() {
+  for (int i = 0; i < allBuses.size(); i++) {
+    allBuses.get(i).moveVehicle();
+    allBuses.get(i).turn();
+  }
+}  
+
+void drawBuses() {
+  for (int i = 0; i < allBuses.size(); i++) {
+    allBuses.get(i).drawVehicle();
+  }
+}
+
 
 void clearCars() {
   int i = 0;

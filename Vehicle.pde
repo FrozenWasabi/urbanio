@@ -44,7 +44,7 @@ class Vehicle {
       }
     }
     //if it intersection and not already turning and it wants to turn, turn
-    if (isTurning == false && turningCooldown == 0) {
+    if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
       for ( int i = 0; i <= 6; i++) {
         if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 70) {
           isTurning = true;
@@ -127,7 +127,6 @@ class Vehicle {
   }
 
   void drawVehicle() {
-    println(turningCooldown);
     noStroke();
     fill(Color);
     pushMatrix();
@@ -148,13 +147,13 @@ class Vehicle {
     return middleY;
   }
   
-  //boolean wantsToTurn() {
-  //  int turnChance = int(random(1,100));
-  //  if (turnChance >= 50) {
-  //    return true;
-  //  }
-  //  else
-  //    this.turningCooldown = 50;
-  //    return false; 
-  //}
+  boolean wantsToTurn() {
+    int turnChance = int(random(1,100));
+    if (turnChance >= 50) {
+      return true;
+    }
+    else
+      this.turningCooldown = 30;
+      return false; 
+  }
 }
