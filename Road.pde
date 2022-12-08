@@ -6,9 +6,10 @@ class Road {
   int y;
   int speed;
   String roadType;
+  String side;
   float orientation;
 
-  Road(int w, int h, int s, int xC, int yC, float o, String rT) {
+  Road(int w, int h, int s, int xC, int yC, float o, String rT, String side) {
     this.rw = w;
     this.rh = h;
     this.speed = s; 
@@ -16,6 +17,16 @@ class Road {
     this.y = yC;
     this.roadType = rT;
     this.orientation = o;
+    this.side = side;
+  }
+
+  Road(int w, int h, int s, int xC, int yC, String rT) {
+    this.rw = w;
+    this.rh = h;
+    this.speed = s; 
+    this.x = xC;
+    this.y = yC;
+    this.roadType = rT;
   }
 
   void drawRoad() {
@@ -36,7 +47,7 @@ class Road {
     rect(this.x, this.y, this.rw, this.rh);
   }
 
-  void DrawCurveLine() {
+  void drawCurveLine() {
     noFill();
     stroke(255, 255, 0);
     strokeWeight(5);

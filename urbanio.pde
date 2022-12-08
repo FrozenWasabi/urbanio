@@ -40,25 +40,26 @@ void draw() {
 
 void setupRoads() {
   /////////////////all roads
-  allRoads.add(new Road(40, 580, 60, 100, 350, 3*PI/2, "road"));
-  allRoads.add(new Road(40, 580, 60, 140, 350, PI/2, "road"));
-  allRoads.add(new Road(964, 40, 60, 478, 580, PI, "road"));
-  allRoads.add(new Road(964, 40, 60, 478, 620, 0, "road"));
-  allRoads.add(new Road(1000, 40, 60, 500, 80, PI, "road"));
-  allRoads.add(new Road(1000, 40, 60, 500, 120, 0, "road"));
-  allRoads.add(new Road(40, 550, 60, 900, 350, 3*PI/2, "road"));
-  allRoads.add(new Road(40, 550, 60, 940, 350, PI/2, "road"));
-  allRoads.add(new Road(40, 650, 60, 480, 450, 3*PI/2, "road"));
-  allRoads.add(new Road(40, 650, 60, 520, 450, PI/2, "road"));
+  allRoads.add(new Road(40, 580, 60, 100, 350, 3*PI/2, "road", "left"));
+  allRoads.add(new Road(40, 580, 60, 140, 350, PI/2, "road", "right"));
+  allRoads.add(new Road(964, 40, 60, 478, 580, PI, "road", "right"));
+  allRoads.add(new Road(964, 40, 60, 478, 620, 0, "road", "left"));
+  allRoads.add(new Road(1000, 40, 60, 500, 80, PI, "road", "left"));
+  allRoads.add(new Road(1000, 40, 60, 500, 120, 0, "road", "right"));
+  allRoads.add(new Road(40, 550, 60, 900, 350, 3*PI/2, "road", "right"));
+  allRoads.add(new Road(40, 550, 60, 940, 350, PI/2, "road", "left"));
+  allRoads.add(new Road(40, 650, 60, 480, 450, 3*PI/2, "road", "right"));
+  allRoads.add(new Road(40, 650, 60, 520, 450, PI/2, "road", "left"));
   /////////////////Intersections coordinations
-  allRoads.add(new Road(80, 80, 60, 500, 600, 0, "intersection"));
-  allRoads.add(new Road(80, 80, 60, 500, 100, 0, "intersection"));
-  allRoads.add(new Road(80, 80, 60, 120, 600, 0, "intersection"));
-  allRoads.add(new Road(80, 80, 60, 120, 100, 0, "intersection"));
-  allRoads.add(new Road(80, 80, 60, 920, 100, 0, "intersection"));
-  allRoads.add(new Road(80, 80, 60, 920, 600, 0, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 500, 600, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 500, 100, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 120, 600, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 120, 100,"intersection"));
+  allRoads.add(new Road(80, 80, 60, 920, 100, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 920, 600, "intersection"));
 
-  //allRoads.add(new Road(80, 80, 60, 881, 559, 0));
+  /////////////////Curve
+  allRoads.add(new Road(80, 80, 60, 881, 559, "curve"));
 }
 
 void updateCars() {
@@ -104,6 +105,9 @@ void drawMap() {
     }
     else if (allRoads.get(i).checkType() == "intersection") {
       allRoads.get(i).drawIntersection();
+    }
+    else if (allRoads.get(i).checkType() == "curve") {
+       allRoads.get(i).drawCurveLine();
     }
   }
 }
