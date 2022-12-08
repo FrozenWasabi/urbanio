@@ -44,19 +44,19 @@ class Vehicle {
       }
     }
     //if it intersection and not already turning and it wants to turn, turn
-    if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
-      for ( int i = 0; i <= 6; i++) {
-        if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+5).getCenterLocationX(),allRoads.get(i+5).getCenterLocationY()) <= 70) {
-          isTurning = true;
-          if (trueOrFalse() == true) {
-            turningRight = true;
-          }
-          else {
-            turningLeft = true;
-          }
-        }
-      }
-    }
+    //if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
+    //  for ( int i = 0; i <= 6; i++) {
+    //    if (dist(this.getCenterLocationX(),this.getCenterLocationY(),allRoads.get(i+9).getCenterLocationX(),allRoads.get(i+9).getCenterLocationY()) <= 70) {
+    //      isTurning = true;
+    //      if (trueOrFalse() == true) {
+    //        turningRight = true;
+    //      }
+    //      else {
+    //        turningLeft = true;
+    //      }
+    //    }
+    //  }
+    //}
   }
 
   void accelerate() {

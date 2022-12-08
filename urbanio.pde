@@ -7,7 +7,7 @@ ArrayList<Road> allRoads = new ArrayList<Road>(); //arraylist for all roads
 
 //color//
 color red = color(255, 0, 0);
-color blue = color(0,0,255);
+color blue = color(0, 0, 255);
 color background = color(40, 200, 80);
 
 //GUI Variables//
@@ -39,26 +39,26 @@ void draw() {
 }
 
 void setupRoads() {
-  allRoads.add(new Road(80, 580, 60, 120, 350));
-  allRoads.add(new Road(964, 80, 60, 478, 600));
-  allRoads.add(new Road(1000, 80, 60, 500, 100));
-  allRoads.add(new Road(80, 550, 60, 920, 350));
-  allRoads.add(new Road(80, 650, 60, 500, 450));
-  ///////////////Intersections coordinations
-  allRoads.add(new Road(80, 80, 60, 500, 600));
-  allRoads.add(new Road(80, 80, 60, 500, 100));
-  allRoads.add(new Road(80, 80, 60, 120, 600));
-  allRoads.add(new Road(80, 80, 60, 120, 100));
-  allRoads.add(new Road(80, 80, 60, 920, 100));
-  allRoads.add(new Road(80, 80, 60, 920, 600));
-  
-  allRoads.add(new Road(80, 80, 60, 881, 559));
-}
+  /////////////////all roads
+  allRoads.add(new Road(40, 580, 60, 100, 350, 3*PI/2, "road"));
+  allRoads.add(new Road(40, 580, 60, 140, 350, PI/2, "road"));
+  allRoads.add(new Road(964, 40, 60, 478, 580, PI, "road"));
+  allRoads.add(new Road(964, 40, 60, 478, 620, 0, "road"));
+  allRoads.add(new Road(1000, 40, 60, 500, 80, PI, "road"));
+  allRoads.add(new Road(1000, 40, 60, 500, 120, 0, "road"));
+  allRoads.add(new Road(40, 550, 60, 900, 350, 3*PI/2, "road"));
+  allRoads.add(new Road(40, 550, 60, 940, 350, PI/2, "road"));
+  allRoads.add(new Road(40, 650, 60, 480, 450, 3*PI/2, "road"));
+  allRoads.add(new Road(40, 650, 60, 520, 450, PI/2, "road"));
+  /////////////////Intersections coordinations
+  allRoads.add(new Road(80, 80, 60, 500, 600, 0, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 500, 100, 0, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 120, 600, 0, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 120, 100, 0, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 920, 100, 0, "intersection"));
+  allRoads.add(new Road(80, 80, 60, 920, 600, 0, "intersection"));
 
-void drawRoads() {
-  for (int i = 0; i < allCars.size(); i++) {
-    allCars.get(i).drawVehicle();
-  }
+  //allRoads.add(new Road(80, 80, 60, 881, 559, 0));
 }
 
 void updateCars() {
@@ -98,26 +98,20 @@ void clearCars() {
 
 void drawMap() {
   ////////////////////////// Roads
-  allRoads.get(0).DrawRoad();
-  allRoads.get(1).DrawRoad();
-  allRoads.get(2).DrawRoad();
-  allRoads.get(3).DrawRoad();
-  allRoads.get(4).DrawRoad();
-  ////////////////////////// Intersections
-  allRoads.get(5).DrawIntersection();
-  allRoads.get(6).DrawIntersection();
-  allRoads.get(7).DrawIntersection();
-  allRoads.get(8).DrawIntersection();
-  allRoads.get(9).DrawIntersection();
-  allRoads.get(10).DrawIntersection();
-  allRoads.get(11).DrawCurveLine();
+  for (int i = 0; i < allRoads.size(); i++) {
+    if (allRoads.get(i).checkType() == "road") {
+      allRoads.get(i).drawRoad();
+    }
+    else if (allRoads.get(i).checkType() == "intersection") {
+      allRoads.get(i).drawIntersection();
+    }
+  }
 }
 
 boolean trueOrFalse() {
-  if (int(random(1,100)) >= 50) {
+  if (int(random(1, 100)) >= 50) {
     return true;
+  } else {
+    return false;
   }
-    else {
-      return false;
-    }
 }
