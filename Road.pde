@@ -37,8 +37,8 @@ class Road {
     fill(255, 255, 0);
   }
 
-  void drawLineCrossing(Road a, Road b) {
-  }
+  //void drawLineCrossing(Road a, Road b) {
+  //}
 
   void drawIntersection() {
     rectMode(CENTER);
@@ -62,6 +62,10 @@ class Road {
   float getCenterLocationY() {
     float middleY = this.y;
     return middleY;
+  }
+  
+  float getAngle() {
+    return orientation;
   }
 
   String checkType() {

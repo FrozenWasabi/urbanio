@@ -14,11 +14,11 @@ color background = color(40, 200, 80);
 
 
 void setup() {
-  frameRate(15);
+  frameRate(30);
   size(1000, 700);
   createGUI();
   allCars.add(new Car(300, 120, 60, 20, red, 5, 10, 10, 10, 10, 0));
-  allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
+  //allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
 
   setupRoads();
 }

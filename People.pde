@@ -29,10 +29,10 @@ class Person {
    }
    
    
-   void boardBus(Bus a){
-     a.Passengers ++;
-     waitDespawn(a);
-   }
+   //void boardBus(Bus a){
+   //  a.Passengers ++;
+   //  waitDespawn(a);
+   //}
    
    void debarkDespawn(BusStop a){
      fill(background);
@@ -49,10 +49,10 @@ class Person {
      }
    }
    
-   void debarkBus(Bus a, BusStop b){
-     a.Passengers --;
-     debarkSpawn(b);     
-   }
+   //void debarkBus(Bus a, BusStop b){
+   //  a.Passengers --;
+   //  debarkSpawn(b);     
+   //}
    
    void moveUpLine(BusStop a){
      fill(this.personColour);
