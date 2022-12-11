@@ -24,6 +24,11 @@ void setup() {
   //allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
 
   setupRoads();
+  imgSchool = loadImage("School.png");
+  imgOffice = loadImage("Office.png");
+  imgSupermarket = loadImage("Supermarket.png");
+  imgCommunitycentre = loadImage("Communitycentre.png");
+  imgBushub = loadImage("Bushub.png");
 }
 
 void draw() {
@@ -34,6 +39,11 @@ void draw() {
   //clearCars();
   updateBuses();
   drawBuses();
+  image(imgSchool, 170, 140, width/7, height/6);
+  image(imgOffice, 510, 260, width/2.5, height/1.8);
+  image(imgSupermarket, 170, 400, width/6, height/5);
+  image(imgCommunitycentre, 100, 300, width/7, height/6);
+  image(imgBushub, 800, -10, width/7, height/6); 
 
   //  updatePeople();
   //  drawPeople();
