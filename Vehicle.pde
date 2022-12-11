@@ -49,7 +49,7 @@ class Vehicle {
 
     //if it intersection and not already turning and it wants to turn, turn
 
-    if (isTurning == false && turningCooldown == 0) {
+    if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
       float desiredAngle;
       if (trueOrFalse() == true) {
         isTurning = false;
@@ -179,13 +179,13 @@ class Vehicle {
     return middleY;
   }
 
-  //boolean wantsToTurn() {
-  //  int turnChance = int(random(1,100));
-  //  if (turnChance >= 50) {
-  //    return true;
-  //  }
-  //  else
-  //    this.turningCooldown = 30;
-  //    return false; 
-  //}
+  boolean wantsToTurn() {
+    int turnChance = int(random(1,100));
+    if (turnChance >= 20) {
+      return true;
+    }
+    else
+      this.turningCooldown = 30;
+      return false; 
+  }
 }
