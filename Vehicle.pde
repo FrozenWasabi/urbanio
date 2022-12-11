@@ -24,6 +24,7 @@ class Vehicle {
   boolean isTurning = false;
   boolean turningLeft = false;
   boolean turningRight = false;
+  boolean despawn = false;
 
   ///Methods///
   /////////////////
@@ -32,6 +33,7 @@ class Vehicle {
       isTurning = true;
       turningRight = true;
     }
+    //else if (this.yPos == 
     //if not near intersection, move forwards
     if (speed > 0) {
       if ( turningCooldown > 0) {
@@ -123,9 +125,9 @@ class Vehicle {
   void turn() {
     if (isTurning == true) {
       if (turningLeft == true) {
-        angle -= (rotationStrength);
-      } else if (turningRight == true) {
         angle += (rotationStrength);
+      } else if (turningRight == true) {
+        angle -= (rotationStrength);
       }
 
       if (angle >= PI/2 || angle <= -PI/2) {     
@@ -158,14 +160,15 @@ class Vehicle {
     noStroke();
     fill(Color);
     pushMatrix();
-    rectMode(CENTER);
+    imageMode(CENTER);
     translate(this.xPos, this.yPos);
     rotate(roadPos+angle);
-
-    rect(0, 0, vWidth, vHeight, 20);
+    car.resize(60,60);
+    tint(Color);
+    image(car,0,0);
     popMatrix();
-    //println("Car's y val is", this.yPos, roadPos);
-    //println("Car's x val is", this.xPos);
+    println("Car's y val is", this.yPos);
+    println("Car's x val is", this.xPos);
   }
 
   float getCenterLocationX() {
@@ -185,5 +188,13 @@ class Vehicle {
     } else
       this.turningCooldown = 30;
     return false;
+  }
+
+  boolean checkOffScreen() {
+    if ( yPos <= 0 || yPos >= 700 || xPos <= 0 || xPos >= 1000) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

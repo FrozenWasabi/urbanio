@@ -1,9 +1,9 @@
 import g4p_controls.*;
 //Global Variables//
 
-ArrayList<Car> allCars = new ArrayList<Car>(); //arraylist for all cars on the road
-ArrayList<Bus> allBuses = new ArrayList<Bus>(); //arraylist for all buses
-ArrayList<Road> allRoads = new ArrayList<Road>(); //arraylist for all roads
+//Images//
+PImage car;
+PImage bus;
 
 //color//
 color red = color(255, 0, 0);
@@ -11,13 +11,16 @@ color blue = color(0, 0, 255);
 color background = color(40, 200, 80);
 
 //GUI Variables//
-
+ArrayList<Car> allCars = new ArrayList<Car>(); //arraylist for all cars on the road
+ArrayList<Bus> allBuses = new ArrayList<Bus>(); //arraylist for all buses
+ArrayList<Road> allRoads = new ArrayList<Road>(); //arraylist for all roads
 
 void setup() {
   frameRate(30);
   size(1000, 700);
+  car = loadImage("car.png");
   createGUI();
-  allCars.add(new Car(300, 120, 60, 20, red, 5, 10, 10, 10, 10, 0));
+  spawnCar();
   //allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
 
   setupRoads();
@@ -28,9 +31,7 @@ void draw() {
   drawMap();
   updateCars();
   drawCars();
-
   //clearCars();
-
   updateBuses();
   drawBuses();
 
@@ -66,7 +67,9 @@ void updateCars() {
   for (int i = 0; i < allCars.size(); i++) {
     allCars.get(i).moveVehicle();
     allCars.get(i).turn();
-    allCars.get(i).carLeave();
+    if (allCars.get(i).despawn == true || allCars.get(i).checkOffScreen() == true) {
+      allCars.remove(i);
+    }
   }
 }  
 void drawCars() {
@@ -85,15 +88,6 @@ void updateBuses() {
 void drawBuses() {
   for (int i = 0; i < allBuses.size(); i++) {
     allBuses.get(i).drawVehicle();
-  }
-}
-
-
-void clearCars() {
-  int i = 0;
-  while (i < allCars.size()) {
-    allCars.remove(i);  
-    i = 0;
   }
 }
 
@@ -116,4 +110,8 @@ boolean trueOrFalse() {
   } else {
     return false;
   }
+}
+
+void spawnCar() {
+  allCars.add(new Car(300, 120, color(random(0,255),random(0,255),random(0,255)), 5, 10, 10, 10, 10, 0));
 }
