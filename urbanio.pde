@@ -54,7 +54,7 @@ void setupRoads() {
   allRoads.add(new Road(80, 80, 60, 500, 600, "intersection"));
   allRoads.add(new Road(80, 80, 60, 500, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 120, 600, "intersection"));
-  allRoads.add(new Road(80, 80, 60, 120, 100,"intersection"));
+  allRoads.add(new Road(80, 80, 60, 120, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 920, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 920, 600, "intersection"));
 
@@ -102,12 +102,10 @@ void drawMap() {
   for (int i = 0; i < allRoads.size(); i++) {
     if (allRoads.get(i).checkType() == "road") {
       allRoads.get(i).drawRoad();
-    }
-    else if (allRoads.get(i).checkType() == "intersection") {
+    } else if (allRoads.get(i).checkType() == "intersection") {
       allRoads.get(i).drawIntersection();
-    }
-    else if (allRoads.get(i).checkType() == "curve") {
-       allRoads.get(i).drawCurveLine();
+    } else if (allRoads.get(i).checkType() == "curve") {
+      allRoads.get(i).drawCurveLine();
     }
   }
 }

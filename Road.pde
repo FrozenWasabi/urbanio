@@ -63,7 +63,7 @@ class Road {
     float middleY = this.y;
     return middleY;
   }
-  
+
   float getAngle() {
     return orientation;
   }

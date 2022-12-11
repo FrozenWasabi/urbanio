@@ -28,6 +28,10 @@ class Vehicle {
   ///Methods///
   /////////////////
   void moveVehicle() {
+    if (this.yPos == 450 && this.xPos == 600) {
+      isTurning = true;
+      turningRight = true;
+    }
     //if not near intersection, move forwards
     if (speed > 0) {
       if ( turningCooldown > 0) {
@@ -69,9 +73,9 @@ class Vehicle {
       }
 
       if (desiredAngle > PI/2 && desiredAngle <3*PI/2) { //corrects the rounding issues with processing
-          desiredAngle = PI;
+        desiredAngle = PI;
       }
-      
+
       for ( int i = 0; i < allRoads.size(); i++) {
         if (allRoads.get(i).checkType() == "road") {
           if (this.roadPos == 0) {
@@ -87,12 +91,7 @@ class Vehicle {
               isTurning = true;
             }
           } else if (this.roadPos == 3*PI/2) {
-            println("-------------");
-            println(allRoads.get(i).getAngle());
-            println(desiredAngle);
-            println("-------------");
             if (allRoads.get(i).getAngle() == desiredAngle) {
-              println(this.yPos - allRoads.get(i).getCenterLocationY());
               if (int(this.yPos) - int(allRoads.get(i).getCenterLocationY()) == 0) {
                 isTurning = true;
               }
@@ -148,7 +147,7 @@ class Vehicle {
 
         angle = 0;
         isTurning = false;
-        turningCooldown = 20;
+        turningCooldown = 5;
         turningLeft = false;
         turningRight = false;
       }
@@ -180,12 +179,11 @@ class Vehicle {
   }
 
   boolean wantsToTurn() {
-    int turnChance = int(random(1,100));
-    if (turnChance >= 20) {
+    int turnChance = int(random(1, 100));
+    if (turnChance >= 5) {
       return true;
-    }
-    else
+    } else
       this.turningCooldown = 30;
-      return false; 
+    return false;
   }
 }
