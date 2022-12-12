@@ -66,12 +66,15 @@ class Vehicle {
       }
 
       if (turningRight == true) {
-        desiredAngle = roadPos - PI/2;
+        desiredAngle = roadPos + PI/2;
         if (desiredAngle == -PI/2) {
           desiredAngle = 3*PI/2;
         }
       } else {
-        desiredAngle = roadPos + PI/2;
+        desiredAngle = roadPos - PI/2;
+        if (desiredAngle == -PI/2) {
+          desiredAngle = 3*PI/2;
+        }
       }
 
       if (desiredAngle > PI/2 && desiredAngle <3*PI/2) { //corrects the rounding issues with processing
@@ -80,23 +83,13 @@ class Vehicle {
 
       for ( int i = 0; i < allRoads.size(); i++) {
         if (allRoads.get(i).checkType() == "road") {
-          if (this.roadPos == 0) {
+          if (this.roadPos == 0 || this.roadPos == PI) {
             if (allRoads.get(i).getAngle() == desiredAngle && this.xPos-allRoads.get(i).getCenterLocationX() == 0) {
               isTurning = true;
             }
-          } else if (this.roadPos == PI/2) {
+          } else if (this.roadPos == PI/2 || this.roadPos == 3*PI/2) {
             if (allRoads.get(i).getAngle() == desiredAngle && this.yPos-allRoads.get(i).getCenterLocationY() == 0) {
               isTurning = true;
-            }
-          } else if (this.roadPos == PI) {
-            if (allRoads.get(i).getAngle() == desiredAngle && this.xPos-allRoads.get(i).getCenterLocationX() == 0) {
-              isTurning = true;
-            }
-          } else if (this.roadPos == 3*PI/2) {
-            if (allRoads.get(i).getAngle() == desiredAngle) {
-              if (int(this.yPos) - int(allRoads.get(i).getCenterLocationY()) == 0) {
-                isTurning = true;
-              }
             }
           }
         }
@@ -132,9 +125,9 @@ class Vehicle {
 
       if (angle >= PI/2 || angle <= -PI/2) {     
         if (turningRight == true) {
-          angle = -(PI/2);
-        } else if (turningLeft == true) {
           angle = (PI/2);
+        } else if (turningLeft == true) {
+          angle = -(PI/2);
         }
 
         roadPos += angle;
@@ -149,7 +142,7 @@ class Vehicle {
 
         angle = 0;
         isTurning = false;
-        turningCooldown = 5;
+        turningCooldown = 30;
         turningLeft = false;
         turningRight = false;
       }
@@ -163,9 +156,9 @@ class Vehicle {
     imageMode(CENTER);
     translate(this.xPos, this.yPos);
     rotate(roadPos+angle);
-    car.resize(60,60);
+    car.resize(60, 60);
     tint(Color);
-    image(car,0,0);
+    image(car, 0, 0);
     popMatrix();
     println("Car's y val is", this.yPos);
     println("Car's x val is", this.xPos);

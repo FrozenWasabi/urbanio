@@ -4,6 +4,11 @@ import g4p_controls.*;
 //Images//
 PImage car;
 PImage bus;
+PImage imgSchool;
+PImage imgOffice;
+PImage imgSupermarket;
+PImage imgCommunitycentre;
+PImage imgBushub;
 
 //color//
 color red = color(255, 0, 0);
@@ -39,6 +44,7 @@ void draw() {
   //clearCars();
   updateBuses();
   drawBuses();
+  noTint();
   image(imgSchool, 170, 140, width/7, height/6);
   image(imgOffice, 510, 260, width/2.5, height/1.8);
   image(imgSupermarket, 170, 400, width/6, height/5);
@@ -51,16 +57,16 @@ void draw() {
 
 void setupRoads() {
   /////////////////all roads
-  allRoads.add(new Road(40, 580, 60, 100, 350, 3*PI/2, "road", "left"));
-  allRoads.add(new Road(40, 580, 60, 140, 350, PI/2, "road", "right"));
+  allRoads.add(new Road(40, 580, 60, 100, 350, PI/2, "road", "left"));
+  allRoads.add(new Road(40, 580, 60, 140, 350, 3*PI/2, "road", "right"));
   allRoads.add(new Road(964, 40, 60, 478, 580, PI, "road", "right"));
   allRoads.add(new Road(964, 40, 60, 478, 620, 0, "road", "left"));
   allRoads.add(new Road(1000, 40, 60, 500, 80, PI, "road", "left"));
   allRoads.add(new Road(1000, 40, 60, 500, 120, 0, "road", "right"));
-  allRoads.add(new Road(40, 550, 60, 900, 350, 3*PI/2, "road", "right"));
-  allRoads.add(new Road(40, 550, 60, 940, 350, PI/2, "road", "left"));
-  allRoads.add(new Road(40, 650, 60, 480, 450, 3*PI/2, "road", "right"));
-  allRoads.add(new Road(40, 650, 60, 520, 450, PI/2, "road", "left"));
+  allRoads.add(new Road(40, 550, 60, 900, 350, PI/2, "road", "right"));
+  allRoads.add(new Road(40, 550, 60, 940, 350, 3*PI/2, "road", "left"));
+  allRoads.add(new Road(40, 650, 60, 480, 450, PI/2, "road", "right"));
+  allRoads.add(new Road(40, 650, 60, 520, 450, 3*PI/2, "road", "left"));
   /////////////////Intersections coordinations
   allRoads.add(new Road(80, 80, 60, 500, 600, "intersection"));
   allRoads.add(new Road(80, 80, 60, 500, 100, "intersection"));
@@ -123,5 +129,5 @@ boolean trueOrFalse() {
 }
 
 void spawnCar() {
-  allCars.add(new Car(300, 120, color(random(0,255),random(0,255),random(0,255)), 5, 10, 10, 10, 10, 0));
+  allCars.add(new Car(300, 120, color(random(100,255),random(100,255),random(0,255)), 5, 10, 10, 10, 10, 0));
 }
