@@ -44,20 +44,45 @@ class Vehicle {
           turningLeft = true;
         }
         calculateTurn();
-      }
-      if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
-        turningRight = true;
-        calculateTurn();
-      } else if (this.yPos == 580 && this.xPos == 900 && roadPos == PI/2) {
-        turningRight = true;
-        calculateTurn();
-      } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
-        turningRight = true;
-        calculateTurn();
-      } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
+      } 
+      if (this.yPos == 580 && this.xPos == 900 && roadPos == PI/2) {
         turningRight = true;
         calculateTurn();
       }
+      if (trueOrFalse() == true) {
+        if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
+          turningRight = true;
+          calculateTurn();
+        } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
+          turningRight = true;
+          calculateTurn();
+        } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
+          turningRight = true;
+          calculateTurn();
+        }
+      } else {
+        if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
+          turningRight = true;
+          calculateTurn();
+        } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
+          turningRight = true;
+          calculateTurn();
+        } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
+          turningRight = true;
+          calculateTurn();
+        }
+      }
+      //if (this.yPos == 620 && this.xPos == 100 && roadPos == PI/2) {
+      //  turningLeft = true;
+      //  calculateTurn();
+      //} else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
+      //  turningLeft = true;
+      //  calculateTurn();
+      //} else if (this.yPos == 160 && this.xPos == 520 && roadPos == 3*PI/2) {
+      //  turningLeft = true;
+      //  calculateTurn();
+      //}
+      //}
     }
 
     if (isTurning == false) {
@@ -77,9 +102,6 @@ class Vehicle {
     float desiredAngle;
     if (turningRight == true) {
       desiredAngle = roadPos + PI/2;
-      if (desiredAngle == -PI/2) {
-        desiredAngle = 3*PI/2;
-      }
     } else {
       desiredAngle = roadPos - PI/2;
     }
@@ -153,7 +175,7 @@ class Vehicle {
 
         angle = 0;
         isTurning = false;
-        turningCooldown = 30;
+        turningCooldown = 10;
         turningLeft = false;
         turningRight = false;
       }
@@ -190,7 +212,7 @@ class Vehicle {
     if (turnChance >= 5) {
       return true;
     } else
-      this.turningCooldown = 30;
+      this.turningCooldown = 10;
     return false;
   }
 
