@@ -29,68 +29,79 @@ class Vehicle {
   ///Methods///
   /////////////////
   void moveVehicle() {
-    if (this.yPos == 450 && this.xPos == 600) {
-      isTurning = true;
-      turningRight = true;
-    }
-    //else if (this.yPos == 
     //if not near intersection, move forwards
     if (speed > 0) {
       if ( turningCooldown > 0) {
         turningCooldown -=1;
       }
-      if (isTurning == false) {
-        if (roadPos == 0) {
-          this.xPos += speed;
-        } else if (roadPos == PI/2) {
-          this.yPos -= speed;
-        } else if (roadPos == PI) {
-          this.xPos -= speed;
-        } else if (roadPos == 3*PI/2) {
-          this.yPos += speed;
+
+      if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
+        if (trueOrFalse() == true) {
+          isTurning = false;
+          turningRight = true;
+        } else {
+          isTurning = false;
+          turningLeft = true;
         }
+        calculateTurn();
+      }
+      if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
+        turningRight = true;
+        calculateTurn();
+      } else if (this.yPos == 580 && this.xPos == 900 && roadPos == PI/2) {
+        turningRight = true;
+        calculateTurn();
+      } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
+        turningRight = true;
+        calculateTurn();
+      } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
+        turningRight = true;
+        calculateTurn();
       }
     }
 
-
-    //if it intersection and not already turning and it wants to turn, turn
-
-    if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
-      float desiredAngle;
-      if (trueOrFalse() == true) {
-        isTurning = false;
-        turningRight = true;
-      } else {
-        isTurning = false;
-        turningLeft = true;
+    if (isTurning == false) {
+      if (roadPos == 0) {
+        this.xPos += speed;
+      } else if (roadPos == PI/2) {
+        this.yPos += speed;
+      } else if (roadPos == PI) {
+        this.xPos -= speed;
+      } else if (roadPos == 3*PI/2) {
+        this.yPos -= speed;
       }
+    }
+  }
 
-      if (turningRight == true) {
-        desiredAngle = roadPos + PI/2;
-        if (desiredAngle == -PI/2) {
-          desiredAngle = 3*PI/2;
-        }
-      } else {
-        desiredAngle = roadPos - PI/2;
-        if (desiredAngle == -PI/2) {
-          desiredAngle = 3*PI/2;
-        }
+  void calculateTurn() {
+    float desiredAngle;
+    if (turningRight == true) {
+      desiredAngle = roadPos + PI/2;
+      if (desiredAngle == -PI/2) {
+        desiredAngle = 3*PI/2;
       }
+    } else {
+      desiredAngle = roadPos - PI/2;
+    }
+    if (desiredAngle == -PI/2) {
+      desiredAngle = 3*PI/2;
+    } else if (desiredAngle < PI/2 || desiredAngle > 3*PI/2) {
+      desiredAngle = 0;
+    }
 
-      if (desiredAngle > PI/2 && desiredAngle <3*PI/2) { //corrects the rounding issues with processing
-        desiredAngle = PI;
-      }
+    if (desiredAngle > PI/2 && desiredAngle <3*PI/2) { //corrects the rounding issues with processing
+      desiredAngle = PI;
+    }
 
-      for ( int i = 0; i < allRoads.size(); i++) {
-        if (allRoads.get(i).checkType() == "road") {
-          if (this.roadPos == 0 || this.roadPos == PI) {
-            if (allRoads.get(i).getAngle() == desiredAngle && this.xPos-allRoads.get(i).getCenterLocationX() == 0) {
-              isTurning = true;
-            }
-          } else if (this.roadPos == PI/2 || this.roadPos == 3*PI/2) {
-            if (allRoads.get(i).getAngle() == desiredAngle && this.yPos-allRoads.get(i).getCenterLocationY() == 0) {
-              isTurning = true;
-            }
+    for ( int i = 0; i < allRoads.size(); i++) {
+      if (allRoads.get(i).checkType() == "road") {
+        if (this.roadPos == 0 || this.roadPos == PI) {
+          if (allRoads.get(i).getAngle() == desiredAngle && this.xPos-allRoads.get(i).getCenterLocationX() == 0) {
+            isTurning = true;
+          }
+        } else if (this.roadPos == PI/2 || this.roadPos == 3*PI/2) {
+          if (allRoads.get(i).getAngle() == desiredAngle && this.yPos-allRoads.get(i).getCenterLocationY() == 0) {
+            isTurning = true;
           }
         }
       }
@@ -160,8 +171,8 @@ class Vehicle {
     tint(Color);
     image(car, 0, 0);
     popMatrix();
-    println("Car's y val is", this.yPos);
-    println("Car's x val is", this.xPos);
+    //println("Car's y val is", this.yPos);
+    //println("Car's x val is", this.xPos);
   }
 
   float getCenterLocationX() {
