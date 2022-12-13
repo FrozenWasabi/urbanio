@@ -49,40 +49,17 @@ class Vehicle {
         turningRight = true;
         calculateTurn();
       }
-      if (trueOrFalse() == true) {
-        if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
-          turningRight = true;
-          calculateTurn();
-        } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
-          turningRight = true;
-          calculateTurn();
-        } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
-          turningRight = true;
-          calculateTurn();
-        }
-      } else {
-        if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
-          turningRight = true;
-          calculateTurn();
-        } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
-          turningRight = true;
-          calculateTurn();
-        } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
-          turningRight = true;
-          calculateTurn();
-        }
+
+      if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
+        turningRight = true;
+        calculateTurn();
+      } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
+        turningRight = true;
+        calculateTurn();
+      } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
+        turningRight = true;
+        calculateTurn();
       }
-      //if (this.yPos == 620 && this.xPos == 100 && roadPos == PI/2) {
-      //  turningLeft = true;
-      //  calculateTurn();
-      //} else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
-      //  turningLeft = true;
-      //  calculateTurn();
-      //} else if (this.yPos == 160 && this.xPos == 520 && roadPos == 3*PI/2) {
-      //  turningLeft = true;
-      //  calculateTurn();
-      //}
-      //}
     }
 
     if (isTurning == false) {
