@@ -12,9 +12,4 @@ class Car extends Vehicle {
     collision = false;
     rotationStrength = PI/20;
   }
-
-  //chance of car leaving if it is at a infrastructure
-  void carLeave() {
-    
-  }
 }

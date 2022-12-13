@@ -16,13 +16,21 @@ color blue = color(0, 0, 255);
 color background = color(40, 200, 80);
 
 //GUI Variables//
-ArrayList<Car> allCars = new ArrayList<Car>(); //arraylist for all cars on the road
-ArrayList<Bus> allBuses = new ArrayList<Bus>(); //arraylist for all buses
-ArrayList<Road> allRoads = new ArrayList<Road>(); //arraylist for all roads
+boolean paused = false;
+boolean cleared = false;
+float aggression;
+float tolerance;
+float capacity;
+
+//Global Variables//
+ArrayList<Car> allCars; //arraylist for all cars on the road
+ArrayList<Bus> allBuses; //arraylist for all buses
+ArrayList<Road> allRoads =  new ArrayList<Road>(); //arraylist for all roads
 
 void setup() {
   frameRate(30);
   size(1000, 700);
+  setupVehicleArrays();
   car = loadImage("car.png");
   createGUI();
   spawnCar();
@@ -36,23 +44,30 @@ void setup() {
   imgBushub = loadImage("Bushub.png");
 }
 
+void setupVehicleArrays() {
+  allCars = new ArrayList<Car>(); //arraylist for all cars on the road
+  allBuses = new ArrayList<Bus>(); //arraylist for all buses
+}
 void draw() {
-  background(background);
-  drawMap();
-  updateCars();
-  drawCars();
-  //clearCars();
-  updateBuses();
-  drawBuses();
-  noTint();
-  image(imgSchool, 170, 140, width/7, height/6);
-  image(imgOffice, 510, 260, width/2.5, height/1.8);
-  image(imgSupermarket, 170, 400, width/6, height/5);
-  image(imgCommunitycentre, 100, 300, width/7, height/6);
-  image(imgBushub, 800, -10, width/7, height/6); 
-
-  //  updatePeople();
-  //  drawPeople();
+  if (paused == false) {
+    background(background);
+    drawMap();
+    updateCars();
+    drawCars();
+    //clearCars();
+    updateBuses();
+    drawBuses();
+    noTint();
+    //image(imgSchool, 170, 140, width/7, height/6);
+    //image(imgOffice, 510, 260, width/2.5, height/1.8);
+    //image(imgSupermarket, 170, 400, width/6, height/5);
+    //image(imgCommunitycentre, 100, 300, width/7, height/6);
+    //image(imgBushub, 800, -10, width/7, height/6); 
+    //rectMode(CENTER);
+    //rect(100,620,20,20);
+    //  updatePeople();
+    //  drawPeople();
+  }
 }
 
 void setupRoads() {
@@ -129,5 +144,5 @@ boolean trueOrFalse() {
 }
 
 void spawnCar() {
-  allCars.add(new Car(300, 120, color(random(100,255),random(100,255),random(0,255)), 5, 10, 10, 10, 10, 0));
+  allCars.add(new Car(0, 120, color(random(100, 255), random(100, 255), random(0, 255)), 5, 10, 10, 10, 10, 0));
 }
