@@ -58,11 +58,11 @@ void draw() {
     updateBuses();
     drawBuses();
     noTint();
-    //image(imgSchool, 170, 140, width/7, height/6);
-    //image(imgOffice, 510, 260, width/2.5, height/1.8);
-    //image(imgSupermarket, 170, 400, width/6, height/5);
-    //image(imgCommunitycentre, 100, 300, width/7, height/6);
-    //image(imgBushub, 800, -10, width/7, height/6); 
+    image(imgSchool, 230, 200, width/7, height/6);
+    image(imgOffice, 710, 450, width/2.5, height/1.8);
+    image(imgSupermarket, 260, 480, width/6, height/5);
+    image(imgCommunitycentre, 615, 200, width/7, height/6);
+    image(imgBushub, 810, 50, width/7, height/6); 
     //rectMode(CENTER);
     //rect(100,620,20,20);
     //  updatePeople();
