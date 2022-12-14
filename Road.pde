@@ -4,6 +4,8 @@ class Road {
   int rh;
   int x;
   int y;
+  int x2;
+  int y2;
   int speed;
   String roadType;
   String side;
@@ -27,6 +29,20 @@ class Road {
     this.x = xC;
     this.y = yC;
     this.roadType = rT;
+  }
+  
+  Road(int xCor1, int yCor1, int xCor2, int yCor2) {
+    this.x = xCor1;
+    this.y = yCor1;
+    this.x2 = xCor2;
+    this.y2 = yCor2;
+    this.roadType = "Road Line";
+  }
+  
+  void drawLine() {
+    stroke(255,255,0);
+    strokeWeight(3);
+    line(this.x, this.y, this.x2, this.y2);
   }
 
   void drawRoad() {
