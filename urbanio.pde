@@ -92,6 +92,19 @@ void setupRoads() {
 
   /////////////////Curve
   allRoads.add(new Road(80, 80, 60, 881, 559, "curve"));
+  
+  /////////////////Road Lines
+  allRoads.add(new Road(120, 140, 120, 560));
+  allRoads.add(new Road(500, 140, 500, 560));
+  allRoads.add(new Road(920, 140, 920, 600));
+  allRoads.add(new Road(540, 600, 920, 600));
+  allRoads.add(new Road(160, 600, 460, 600));
+  allRoads.add(new Road(0, 600, 80, 600));
+  allRoads.add(new Road(540, 100, 880, 100));
+  allRoads.add(new Road(160, 100, 460, 100));
+  allRoads.add(new Road(0, 100, 80, 100));
+  allRoads.add(new Road(960, 100, 1000, 100));
+  allRoads.add(new Road(500, 640, 500, 700));
 }
 
 void updateCars() {
@@ -131,6 +144,9 @@ void drawMap() {
       allRoads.get(i).drawIntersection();
     } else if (allRoads.get(i).checkType() == "curve") {
       allRoads.get(i).drawCurveLine();
+    }
+    else{
+      allRoads.get(i).drawLine();
     }
   }
 }
