@@ -89,9 +89,6 @@ void setupRoads() {
   allRoads.add(new Road(80, 80, 60, 120, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 920, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 920, 600, "intersection"));
-
-  /////////////////Curve
-  allRoads.add(new Road(80, 80, 60, 881, 559, "curve"));
   
   /////////////////Road Lines
   allRoads.add(new Road(120, 140, 120, 560));
