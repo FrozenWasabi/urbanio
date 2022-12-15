@@ -89,7 +89,7 @@ void setupRoads() {
   allRoads.add(new Road(80, 80, 60, 120, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 920, 100, "intersection"));
   allRoads.add(new Road(80, 80, 60, 920, 600, "intersection"));
-  
+
   /////////////////Road Lines
   allRoads.add(new Road(120, 140, 120, 560));
   allRoads.add(new Road(500, 140, 500, 560));
@@ -108,6 +108,14 @@ void updateCars() {
   for (int i = 0; i < allCars.size(); i++) {
     allCars.get(i).moveVehicle();
     allCars.get(i).turn();
+    for (int z = 0; z < allCars.size(); z++) {
+      if (i != z) { //to make sure the car is not checking itself for collision
+        if (abs(allCars.get(i).getCenterLocationX() - allCars.get(z).getCenterLocationX()) <= 30 && abs(allCars.get(i).getCenterLocationY() - allCars.get(z).getCenterLocationY()) <= 30) {
+          allCars.get(i).movementCooldown += 30;
+          allCars.get(z).movementCooldown -= 30;
+        }
+      }
+    }
     if (allCars.get(i).despawn == true || allCars.get(i).checkOffScreen() == true) {
       allCars.remove(i);
     }
@@ -141,8 +149,7 @@ void drawMap() {
       allRoads.get(i).drawIntersection();
     } else if (allRoads.get(i).checkType() == "curve") {
       allRoads.get(i).drawCurveLine();
-    }
-    else{
+    } else {
       allRoads.get(i).drawLine();
     }
   }
@@ -157,5 +164,22 @@ boolean trueOrFalse() {
 }
 
 void spawnCar() {
-  allCars.add(new Car(0, 120, color(random(100, 255), random(100, 255), random(0, 255)), 5, 10, 10, 10, 10, 0));
+  if (trueOrFalse() == true) {
+    if (checkNearby(0, 120) == false) {
+      allCars.add(new Car(0, 120, color(random(100, 255), random(100, 255), random(0, 255)), 5, 10, 10, 10, 10, 0));
+    }
+  } else {
+    if (checkNearby(0, 620) == false) {
+      allCars.add(new Car(0, 620, color(random(100, 255), random(100, 255), random(0, 255)), 5, 10, 10, 10, 10, 0));
+    }
+  }
+}
+
+boolean checkNearby(int x, int y) { //checks if there is a car close enough to where we want to put another car in, if so we want to avoid that
+  for (int i = 0; i < allCars.size(); i++) { //we go through the entire array of cars and check their x and y coordinates, both x and y must be close enough to determine that it is too close
+    if ((int(allCars.get(i).getCenterLocationX()) - x) < 100 && (int(allCars.get(i).getCenterLocationY()) - y) < 100) {
+      return true;
+    }
+  }
+  return false; //if the entire loop has finished without returning true, we can return false to spawn in a car
 }

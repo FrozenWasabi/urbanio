@@ -19,6 +19,7 @@ class Vehicle {
   float angle;
   float rotationStrength;
   float turningCooldown;
+  float movementCooldown;
   String sideOfRoad;
   boolean collision;
   boolean isTurning = false;
@@ -29,49 +30,69 @@ class Vehicle {
   ///Methods///
   /////////////////
   void moveVehicle() {
-    //if not near intersection, move forwards
-    if (speed > 0) {
-      if ( turningCooldown > 0) {
-        turningCooldown -=1;
-      }
-
-      if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
-        if (trueOrFalse() == true) {
-          isTurning = false;
-          turningRight = true;
-        } else {
-          isTurning = false;
-          turningLeft = true;
+    if (movementCooldown <= 0) {
+      if (speed > 0) {
+        if ( turningCooldown > 0) {
+          turningCooldown -=1;
         }
-        calculateTurn();
-      } 
-      if (this.yPos == 580 && this.xPos == 900 && roadPos == PI/2) {
-        turningRight = true;
-        calculateTurn();
+        if (this.yPos == 620 && this.xPos == 40) { //the car cannot turn here so we put a cooldown on it
+          turningCooldown = 30;
+        }
+        if (this.yPos == 620 && this.xPos == 900 && roadPos == 0) { //the car must make a left turn here
+          turningCooldown = 30;
+        }
+        if (this.yPos == 620 && this.xPos == 940 && roadPos == 0) { //the car must make a left turn here
+          turningCooldown = 0;
+          turningLeft = true;
+          calculateTurn();
+        }
+        if (this.yPos == 620 && this.xPos == 480) {
+          turningRight = true;
+          calculateTurn();
+        }
+        if (isTurning == false && turningCooldown == 0 && wantsToTurn() == true) {
+          if (trueOrFalse() == true) {
+            isTurning = false;
+            turningRight = true;
+          } else {
+            isTurning = false;
+            turningLeft = true;
+          }
+          calculateTurn();
+        } 
+        if (this.yPos == 620 && this.xPos == 940 && roadPos == 0) {
+          turningLeft = true;
+          calculateTurn();
+        }
+        if (this.yPos == 580 && this.xPos == 900 && roadPos == PI/2) {
+          turningRight = true;
+          calculateTurn();
+        }
+        if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
+          turningRight = true;
+          calculateTurn();
+        } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
+          turningRight = true;
+          calculateTurn();
+        } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
+          turningRight = true;
+          calculateTurn();
+        }
       }
 
-      if (this.yPos == 580 && this.xPos == 100 && roadPos == PI/2) {
-        turningRight = true;
-        calculateTurn();
-      } else if (this.yPos == 120 && this.xPos == 140 && roadPos == 3*PI/2) {
-        turningRight = true;
-        calculateTurn();
-      } else if (this.yPos == 120 && this.xPos == 520 && roadPos == 3*PI/2) {
-        turningRight = true;
-        calculateTurn();
+      if (isTurning == false) {
+        if (roadPos == 0) {
+          this.xPos += speed;
+        } else if (roadPos == PI/2) {
+          this.yPos += speed;
+        } else if (roadPos == PI) {
+          this.xPos -= speed;
+        } else if (roadPos == 3*PI/2) {
+          this.yPos -= speed;
+        }
       }
-    }
-
-    if (isTurning == false) {
-      if (roadPos == 0) {
-        this.xPos += speed;
-      } else if (roadPos == PI/2) {
-        this.yPos += speed;
-      } else if (roadPos == PI) {
-        this.xPos -= speed;
-      } else if (roadPos == 3*PI/2) {
-        this.yPos -= speed;
-      }
+    } else {
+      movementCooldown -= 1;
     }
   }
 
@@ -87,7 +108,6 @@ class Vehicle {
     } else if (desiredAngle < PI/2 || desiredAngle > 3*PI/2) {
       desiredAngle = 0;
     }
-
     if (desiredAngle > PI/2 && desiredAngle <3*PI/2) { //corrects the rounding issues with processing
       desiredAngle = PI;
     }
@@ -128,7 +148,7 @@ class Vehicle {
   void turn() {
     if (isTurning == true) {
       if (turningLeft == true) {
-        angle += (rotationStrength);
+        angle += (rotationStrength); //rotating the opposite direction visually before we enter the lane
       } else if (turningRight == true) {
         angle -= (rotationStrength);
       }
