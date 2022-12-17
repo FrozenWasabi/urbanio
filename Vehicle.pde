@@ -220,4 +220,32 @@ class Vehicle {
       return false;
     }
   }
+  
+    boolean busTrack1(){ 
+    if(this.xPos == 562 && this.yPos == 120){ //--562
+      return true;
+    }else if(this.xPos == 518 && this.yPos == 540){
+      return true;
+    }else if(this.xPos == 860 && this.yPos == 584){
+      return true;
+    }else if(this.xPos == 902 && this.yPos == 120){//testing
+      return false;
+    }else{
+      return false;
+    }
+  }
+  
+    boolean busTrack2(){ //random name, need to change to bus track 2
+    if(this.xPos == 180 && this.yPos == 120){//x value
+      return true;
+    }else if(this.xPos == 136 && this.yPos == 540){//x value
+      return true;
+    }else if(this.xPos == 860 && this.yPos == 584){
+      return true;
+    }else if(this.xPos == 902 && this.yPos == 120){//testing
+      return false;
+    }else{
+      return false;
+    }
+  }
 }

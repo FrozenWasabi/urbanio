@@ -34,7 +34,9 @@ void setup() {
   car = loadImage("car.png");
   createGUI();
   spawnCar();
-  //allBuses.add(new Bus(300, 620, 90, 30, blue, 5, 10, 10, 10, 10, 0));
+  
+  spawnBus();
+  spawnBusBack();
 
   setupRoads();
   imgSchool = loadImage("School.png");
@@ -129,10 +131,16 @@ void drawCars() {
 
 void updateBuses() {
   for (int i = 0; i < allBuses.size(); i++) {
-    allBuses.get(i).moveVehicle();
-    allBuses.get(i).turn();
+    allBuses.get(0).moveBus(); //change to moveBus() in order to go forward AND change bus spawn position at the bottom
+    allBuses.get(0).turn();
+    //allBuses.get(1).moveBusBack();   //This will spawn second bus but error for 'for' loop after despawn
+    //allBuses.get(1).turn();
+    if(allBuses.get(i).doDespawn() == true){
+      allBuses.remove(i);
+    }
   }
-}  
+
+} 
 
 void drawBuses() {
   for (int i = 0; i < allBuses.size(); i++) {
@@ -182,4 +190,12 @@ boolean checkNearby(int x, int y) { //checks if there is a car close enough to w
     }
   }
   return false; //if the entire loop has finished without returning true, we can return false to spawn in a car
+}
+
+void spawnBusBack(){
+  allBuses.add(new Bus(800, 80, 90, 30, blue, 5, 2, 10, 10, 10, 0));// For Forward: 800, 120 --- For Backward: 800, 80
+}
+
+void spawnBus(){
+    allBuses.add(new Bus(800, 120, 90, 30, blue, 5, 2, 10, 10, 10, 0));
 }

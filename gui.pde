@@ -5,7 +5,6 @@
  * designer and care should be taken when editing this file.
  * Only add/edit code inside the event handlers i.e. only
  * use lines between the matching comment tags. e.g.
-
  void myBtnEvents(GButton button) { //_CODE_:button1:12356:
      // It is safe to enter your event code here  
  } //_CODE_:button1:12356:
@@ -42,7 +41,7 @@ public void spawnBus_click1(GButton source, GEvent event) { //_CODE_:spawnBus:74
 } //_CODE_:spawnBus:744922:
 
 public void spawnCar_click1(GButton source, GEvent event) { //_CODE_:spawnCar:798203:
-  allCars.add(new Car(0, 120, color(random(100, 255), random(100, 255), random(0, 255)), 5, 10, 10, 10, 10, 0));
+  spawnCar();
 } //_CODE_:spawnCar:798203:
 
 public void demand_slider1_change1(GCustomSlider source, GEvent event) { //_CODE_:demand_slider1:569200:
